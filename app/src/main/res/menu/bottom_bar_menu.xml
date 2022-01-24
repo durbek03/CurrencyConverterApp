@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ic_home"
+        android:title="Bosh oyna"
+        android:id="@+id/main"/>
+
+    <item
+        android:icon="@drawable/ic_all_currency"
+        android:title="Barcha valyutalar"
+        android:id="@+id/all"/>
+
+    <item
+        android:icon="@drawable/ic_calculator"
+        android:title="Kalkulyator"
+        android:id="@+id/calculator"/>
+</menu>

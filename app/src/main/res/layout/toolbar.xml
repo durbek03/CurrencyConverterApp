@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="0dp"
+    app:elevation="0dp"
+    android:backgroundTint="@color/app_main_color"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.appbar.MaterialToolbar
+        app:menu="@menu/toolbar_menu"
+        app:title="Pro valyuta kurslari"
+        android:id="@+id/toolbar"
+        app:navigationIcon="@drawable/ic_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</com.google.android.material.appbar.AppBarLayout>

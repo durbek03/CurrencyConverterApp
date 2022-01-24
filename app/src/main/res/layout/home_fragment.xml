@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment">
+
+    <com.google.android.material.tabs.TabLayout
+        android:paddingHorizontal="30dp"
+        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorGravity="stretch"
+        app:tabIndicatorAnimationMode="elastic"
+        android:elevation="5dp"
+        app:tabMode="scrollable"
+        app:tabIndicator="@drawable/indicator"
+        android:id="@+id/tabLayout"
+        app:tabTextColor="@color/grey"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:background="@color/app_main_color"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout"
+        android:id="@+id/viewPager"
+        app:layout_constraintHeight_percent="0.35"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <com.google.android.material.tabs.TabLayout
+        app:tabGravity="fill"
+        app:tabMaxWidth="25dp"
+        app:tabMode="auto"
+        android:layout_marginHorizontal="70dp"
+        app:tabBackground="@drawable/tab_custom_view_style"
+        app:tabIndicatorHeight="0dp"
+        android:background="@color/app_main_color"
+        app:layout_constraintTop_toBottomOf="@id/viewPager"
+        android:id="@+id/dottedTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:background="@drawable/currency_history_layout_style"
+        android:paddingTop="30dp"
+        android:paddingHorizontal="30dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/rvLayout"
+        app:layout_constraintTop_toBottomOf="@id/dottedTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <TextView
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:text="Valyutalarning o’zgarish tarixi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:id="@+id/rv"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

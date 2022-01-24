@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.text.TextUtils"/>
+        <variable
+            name="currency"
+            type="com.example.a11task1.database.entity.RoomCurrency" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E6E6E6"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            app:date="@{currency.date}"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintRight_toLeftOf="@id/sell_tv"
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="12.12.2092"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/time"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <TextView
+            app:time="@{currency.date}"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintRight_toLeftOf="@id/sell_price"
+            android:id="@+id/time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="20:00"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/date"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <TextView
+            app:layout_constraintRight_toLeftOf="@id/buy_tv"
+            android:id="@+id/sell_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Sotilishi"
+            android:textColor="#808080"
+            app:layout_constraintBottom_toTopOf="@id/sell_price"
+            app:layout_constraintLeft_toRightOf="@id/date"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <TextView
+            app:layout_constraintRight_toLeftOf="@id/buy_price"
+            android:id="@+id/sell_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{TextUtils.isEmpty(currency.nbu_cell_price) ? currency.cb_price + ` UZS` : currency.nbu_cell_price + ` UZS`}"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/time"
+            app:layout_constraintTop_toBottomOf="@id/sell_tv"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <TextView
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/buy_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Olinishi"
+            android:textColor="#808080"
+            app:layout_constraintBottom_toTopOf="@id/buy_price"
+            app:layout_constraintLeft_toRightOf="@id/sell_tv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <TextView
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/buy_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{TextUtils.isEmpty(currency.nbu_buy_price) ? currency.cb_price + ` UZS` : currency.nbu_buy_price + ` UZS`}"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/sell_price"
+            app:layout_constraintTop_toBottomOf="@id/buy_tv"
+            app:layout_constraintWidth_percent="0.3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
