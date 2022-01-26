@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), AllCurrencyRvAdapter.MyCalcClickListen
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     lateinit var viewModel: ActivityViewModel
     lateinit var appDatabase: AppDatabase
+    lateinit var myNetworkHelper: MyNetworkHelper
     val homeFragment = HomeFragment.newInstance()
     val allCurrencyFragment = AllCurrencyFragment.newInstance()
     val calculatorFragment = CalculatorFragment.newInstance()
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity(), AllCurrencyRvAdapter.MyCalcClickListen
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[ActivityViewModel::class.java]
         appDatabase = AppDatabase.getInstance(this)
+        myNetworkHelper = MyNetworkHelper(this)
 
         val toolbar = binding.toolbarLayout.toolbar
         toolbar.setNavigationOnClickListener {
@@ -48,12 +50,23 @@ class MainActivity : AppCompatActivity(), AllCurrencyRvAdapter.MyCalcClickListen
         }
 
         binding.botNavView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.main -> {viewModel.setFragment(homeFragment)}
-                R.id.all -> {viewModel.setFragment(allCurrencyFragment)}
-                R.id.calculator -> {viewModel.setFragment(calculatorFragment)}
+            if (myNetworkHelper.isNetworkConnected()) {
+                when (it.itemId) {
+                    R.id.main -> {
+                        viewModel.setFragment(homeFragment)
+                    }
+                    R.id.all -> {
+                        viewModel.setFragment(allCurrencyFragment)
+                    }
+                    R.id.calculator -> {
+                        viewModel.setFragment(calculatorFragment)
+                    }
+                }
+                true
+            } else {
+                Toast.makeText(this, "Please turn on network to navigate other pages", Toast.LENGTH_SHORT).show()
+                false
             }
-            true
         }
 
         addData()
@@ -80,7 +93,11 @@ class MainActivity : AppCompatActivity(), AllCurrencyRvAdapter.MyCalcClickListen
 
     fun addData() {
         if (!NetworkHelper(this).isNetworkConnected()) {
-            Toast.makeText(this, "Iltimos internetni yoqib qayta kiring, malumotlar yangilanmasligi mumkun", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Iltimos internetni yoqib qayta kiring, malumotlar yangilanmasligi mumkun",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
         val job = lifecycleScope.launch(Dispatchers.IO) {
